@@ -20,6 +20,7 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
   - docker-compose exec shop-web bash
   - cd /var/www
+  - vendor/bin/phpunit
 
 
 #    佈署相關資訊
