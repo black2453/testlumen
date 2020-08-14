@@ -1,3 +1,4 @@
+# 以下為docker環境設置
 sudo: required
 
 services:
@@ -17,6 +18,8 @@ before_script:
   - cp docker-compose.yml.example docker-compose.yml
   - docker-compose up -d --build
   - composer install
+# 以上為docker環境設置
+
 #  - docker-compose exec shop-web bash
 #  - cd /var/www
 
