@@ -1,0 +1,8 @@
+/docker/mysql
+/docker/default.conf
+/vendor
+/.idea
+.env
+.phpunit.result.cache
+docker-compose.yml
+composer.lock
