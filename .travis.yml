@@ -27,7 +27,7 @@ before_install:
   - mysql -e 'CREATE DATABASE nuxt_shop;'
 before_script:
   - composer self-update;
-  - composer install --prefer-dist --optmize-autoloader --quiet
+  - composer install --prefer-dist --quiet
 
 script: vendor/bin/phpunit
 
