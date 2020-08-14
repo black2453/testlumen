@@ -16,8 +16,8 @@ before_script:
   - cp .env.example .env
   - cp docker-compose.yml.example docker-compose.yml
   - docker-compose up -d --build
-  - docker-compose exec shop-web bash
-  - cd /var/www
+#  - docker-compose exec shop-web bash
+#  - cd /var/www
 
 jobs:
   fast_finish: true
