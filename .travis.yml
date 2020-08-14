@@ -31,7 +31,7 @@ before_script:
   - cp docker-compose.yml.example docker-compose.yml
   - composer self-update;
   - composer install --no-interaction
-  - php artisan migrate
+#  - php artisan migrate
 
 script: vendor/bin/phpunit
 
