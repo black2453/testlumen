@@ -27,8 +27,11 @@ before_install:
   - docker-compose up -d --build
   - docker-compose exec shop-web bash
   - cd /var/www
-  - vendor/bin/phpunit
 
+install:
+  - composer install --prefer-dist --optmize-autoloader --quiet
+
+script: vendor/bin/phpunit
 
 #    佈署相關資訊
 #deploy:
