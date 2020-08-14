@@ -16,6 +16,7 @@ before_script:
   - cp .env.example .env
   - cp docker-compose.yml.example docker-compose.yml
   - docker-compose up -d --build
+  - ls
   - docker-compose exec shop-web bash
   - cd /var/www
 
