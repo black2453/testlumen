@@ -16,11 +16,20 @@ before_script:
   - cp .env.example .env
   - cp docker-compose.yml.example docker-compose.yml
   - docker-compose up -d --build
-  - ls
   - docker-compose exec shop-web bash
   - cd /var/www
 
-script: vendor/bin/phpunit
+jobs:
+  fast_finish: true
+  include:
+    -
+      script:
+        - composer install
+        - ./ddev --version
+        - ./ddev start
+        - vendor/bin/phpunit run
+
+#script: vendor/bin/phpunit
 
 after_script:
   - docker-compose down
