@@ -25,9 +25,7 @@ jobs:
     -
       script:
         - composer install
-        - ./ddev --version
-        - ./ddev start
-        - vendor/bin/phpunit run
+        - vendor/bin/phpunit
 
 #script: vendor/bin/phpunit
 
