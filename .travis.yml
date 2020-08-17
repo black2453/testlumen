@@ -25,7 +25,7 @@ before_script:
   - docker-compose up -d --build
 #  - composer install
 # 以上為docker環境設置
-
+  - docker container ls
   - docker-compose exec shop-web bash
 #  - cd /var/www
 
