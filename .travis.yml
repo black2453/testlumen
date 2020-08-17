@@ -29,18 +29,18 @@ before_script:
 #  - 設定db環境(直接匯入資料庫)
   - sudo cp nuxt_shop.sql docker/mysql/nuxt_shop.sql
 #  - docker-comopse exec shop-db show databases;
-  - docker exec -it testlumen_shop-db_1 bash
+#  - docker exec -it testlumen_shop-db_1 bash
 #  - mysql -u root -p
 #  - root
-  - bash show databases;
-  - CREATE DATABASE  nuxt_shop
-  - show databases;
-  - mysql -u root -p nuxt_shop < nuxt_shop.sql
-  - exit
-  - exit
-  - docker exec -it testlumen_shop-web_1 bash
-  - cd /var/www
-  - composer install
+#  - bash show databases;
+#  - CREATE DATABASE  nuxt_shop
+#  - show databases;
+#  - mysql -u root -p nuxt_shop < nuxt_shop.sql
+#  - exit
+#  - exit
+#  - docker exec -it testlumen_shop-web_1 bash
+#  - cd /var/www
+#  - composer install
 #  - docker-compose exec shop-web bash
 #  - cd /var/www
 
@@ -52,7 +52,21 @@ before_script:
 #        - composer install
 #        - vendor/bin/phpunit
 
-script: vendor/bin/phpunit
+script:
+  docker exec -it testlumen_shop-db_1 bash;
+  mysql -u root -p;
+  root;
+  show databases;
+  CREATE DATABASE  nuxt_shop;
+  show databases;
+  mysql -u root -p nuxt_shop < nuxt_shop.sql;
+  exit;
+  exit;
+  docker exec -it testlumen_shop-web_1 bash;
+  cd /var/www;
+  composer install;
+  vendor/bin/phpunit;
+
 
 after_script:
   - docker-compose down
