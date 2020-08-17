@@ -20,7 +20,7 @@ before_install:
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
-  - sudo mysql -e "CREATE DATABASE ${DB_DATABASE};"
+  - sudo mysql -e "CREATE DATABASE nuxt_shop;"
   - sudo mysql -e 'SHOW DATABASES;'
 #  - mysql -e "SET PASSWORD = PASSWORD('${DB_PASSWORD}');"
 #  - ls -lah
