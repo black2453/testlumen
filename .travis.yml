@@ -22,7 +22,7 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
   - mysql -e "CREATE DATABASE ${DB_DATABASE};"
   - mysql -e "SET PASSWORD = PASSWORD('${DB_PASSWORD}');"
-  - mysql -e "mysql -u ${DB_USERNAME} -p ${DB_PASSWORD} < nuxt_shop.sql;"
+  - mysql -e "mysql -u ${DB_USERNAME} -p ${DB_PASSWORD}  ${DB_DATABASE} < nuxt_shop.sql;"
 before_script:
   - ls -lah
   - cp .env.example .env
