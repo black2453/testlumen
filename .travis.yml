@@ -19,6 +19,7 @@ before_install:
 
 before_script:
   - ls -lah
+  - echo $PATH
   - docker --version
   - cp .env.example .env
   - cp docker-compose.yml.example docker-compose.yml
@@ -29,6 +30,7 @@ before_script:
 #  - 設定db環境(直接匯入資料庫)
   - cd /etc
   - cat hosts
+  - echo $PATH
   - sudo cp nuxt_shop.sql docker/mysql/nuxt_shop.sql
   - docker-compose ps
 #  - docker-comopse exec shop-db show databases;
