@@ -6,7 +6,7 @@ services:
 
 env:
 #  DOCKER_COMPOSE_VERSION: 1.23.2
-  DOCKER_COMPOSE_VERSION: 19.03.12
+  DOCKER_COMPOSE_VERSION: 1.27.0-rc1
 
 before_install:
   - sudo apt-get -y update
