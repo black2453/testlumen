@@ -32,7 +32,7 @@ before_script:
   - docker exec -it testlumen_shop-db_1 bash
 #  - mysql -u root -p
 #  - root
-  - show databases;
+  - bash show databases;
   - CREATE DATABASE  nuxt_shop
   - show databases;
   - mysql -u root -p nuxt_shop < nuxt_shop.sql
