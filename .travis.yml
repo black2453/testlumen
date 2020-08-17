@@ -27,6 +27,7 @@ before_script:
 # 以上為docker環境設置
 #  - docker container ls
 #  - 設定db環境(直接匯入資料庫)
+  - cd /etc
   - cat hosts
   - sudo cp nuxt_shop.sql docker/mysql/nuxt_shop.sql
   - docker-compose ps
