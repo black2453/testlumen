@@ -54,17 +54,6 @@ before_script:
 
 script:
 #  docker exec -it testlumen_shop-db_1 bash
-  docker exec -it testlumen_shop-db_1 bash -c
-  "
-  mysql -u root -p && \
-  root && \
-  show databases && \
-  CREATE DATABASE  nuxt_shop && \
-  show databases && \
-  mysql -u root -p nuxt_shop < nuxt_shop.sql && \
-  exit && \
-  exit
-  "
 #  mysql -u root -p;
 #  root;
 #  show databases;
@@ -73,18 +62,23 @@ script:
 #  mysql -u root -p nuxt_shop < nuxt_shop.sql;
 #  exit;
 #  exit;
-  docker exec -it testlumen_shop-web_1 bash -c
-  "
-  cd /var/www && \
-  composer install  && \
-  vendor/bin/phpunit
-  "
-
 #  docker exec -it testlumen_shop-web_1 bash;
 #  cd /var/www;
 #  composer install;
 #  vendor/bin/phpunit;
-
+  docker exec -it testlumen_shop-db_1 bash -c "
+  mysql -u root -p && \
+  root && \
+  show databases && \
+  CREATE DATABASE  nuxt_shop && \
+  show databases && \
+  mysql -u root -p nuxt_shop < nuxt_shop.sql && \
+  exit && \
+  exit "
+  docker exec -it testlumen_shop-web_1 bash -c "
+  cd /var/www && \
+  composer install&& \
+  vendor/bin/phpunit "
 
 after_script:
   - docker-compose down
