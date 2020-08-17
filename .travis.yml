@@ -66,8 +66,11 @@ script:
 #  cd /var/www;
 #  composer install;
 #  vendor/bin/phpunit;
-  docker exec -i testlumen_shop-db_1  mysql -uroot -proot CREATE DATABASE  nuxt_shop;
-  docker exec -i testlumen_shop-db_1  mysql -uroot -proot nuxt_shop < nuxt_shop.sql;
+  docker exec -it testlumen_shop-db_1 bash -c " mysql -uroot -proot CREATE DATABASE  nuxt_shop; "
+  docker exec -it testlumen_shop-db_1 bash -c " mysql -uroot -proot nuxt_shop < nuxt_shop.sql "
+#  docker exec -i testlumen_shop-db_1  mysql -uroot -proot CREATE DATABASE  nuxt_shop;
+#  docker exec -it testlumen_shop-db_1 bash -c " mysql -uroot -proot nuxt_shop < nuxt_shop.sql "
+#  docker exec -i testlumen_shop-db_1  mysql -uroot -proot nuxt_shop < nuxt_shop.sql;
 #  docker exec -it testlumen_shop-db_1 bash -c "
 #  mysql -u root -proot && \
 #  show databases && \
