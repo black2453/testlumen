@@ -23,6 +23,7 @@ before_install:
   - mysql -e "CREATE DATABASE ${DB_DATABASE};"
   - mysql -e "SET PASSWORD = PASSWORD('${DB_PASSWORD}');"
   - ls -lah
+  - sudo mysql -e 'SHOW DATABASES;'
   - mysql -u root -proot nuxt_shop < nuxt_shop.sql;
 #  - mysql -e "mysql -u root -proot  nuxt_shop < nuxt_shop.sql;"
 before_script:
