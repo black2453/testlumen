@@ -1,13 +1,17 @@
 # 以下為docker環境設置
+# docker + 外部mysql (mysql放docker內暫時無法)
 sudo: required
 
 services:
   - docker
-
+  - mysql
 env:
-#  DOCKER_COMPOSE_VERSION: 1.23.2
   DOCKER_COMPOSE_VERSION: 1.27.0-rc1
-
+  DB_HOST: 127.0.0.1
+  DB_PORT: 3306
+  DB_DATABASE: nuxt_shop
+  DB_USERNAME: root
+  DB_PASSWORD: root
 before_install:
   - sudo apt-get -y update
   - sudo apt-get -y purge docker.io
@@ -16,70 +20,20 @@ before_install:
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
-
+  - mysql -e "CREATE DATABASE ${DB_DATABASE};"
+  - mysql -e "SET PASSWORD = PASSWORD('${DB_PASSWORD}');"
+  - mysql -e "mysql -u ${DB_USERNAME} -p ${DB_PASSWORD} < nuxt_shop.sql;"
 before_script:
   - ls -lah
-  - echo $PATH
-  - docker --version
   - cp .env.example .env
   - cp docker-compose.yml.example docker-compose.yml
   - docker-compose up -d --build
-#  - composer install
-# 以上為docker環境設置
-#  - docker container ls
-#  - 設定db環境(直接匯入資料庫)
-  - cd /etc
-  - cat hosts
-  - echo $PATH
-  - sudo cp nuxt_shop.sql docker/mysql/nuxt_shop.sql
+#  - sudo cp nuxt_shop.sql docker/mysql/nuxt_shop.sql
   - docker-compose ps
-#  - docker-comopse exec shop-db show databases;
-#  - docker exec -it testlumen_shop-db_1 bash
-#  - mysql -u root -p
-#  - root
-#  - bash show databases;
-#  - CREATE DATABASE  nuxt_shop
-#  - show databases;
-#  - mysql -u root -p nuxt_shop < nuxt_shop.sql
-#  - exit
-#  - exit
-#  - docker exec -it testlumen_shop-web_1 bash
-#  - cd /var/www
-#  - composer install
-#  - docker-compose exec shop-web bash
-#  - cd /var/www
-
-#jobs:
-#  fast_finish: true
-#  include:
-#    -
-#      script:
-#        - composer install
-#        - vendor/bin/phpunit
-
 script:
-#  docker exec -it testlumen_shop-db_1 bash
-#  mysql -u root -p;
-#  root;
-#  show databases;
-#  CREATE DATABASE  nuxt_shop;
-#  show databases;
-#  mysql -u root -p nuxt_shop < nuxt_shop.sql;
-#  exit;
-#  exit;
-#  docker exec -it testlumen_shop-web_1 bash;
-#  cd /var/www;
-#  composer install;
-#  vendor/bin/phpunit;
-#  docker exec -it testlumen_shop-db_1 bash -c " mysql -uroot -proot CREATE DATABASE  nuxt_shop;exit;"
-#  docker exec -it testlumen_shop-db_1 bash -c " mysql -uroot -proot nuxt_shop < nuxt_shop.sql;exit;"
-#  docker exec -i testlumen_shop-db_1  mysql -uroot -proot CREATE DATABASE  nuxt_shop;
-#  docker exec -it testlumen_shop-db_1 bash -c " mysql -uroot -proot nuxt_shop < nuxt_shop.sql "
-#  docker exec -i testlumen_shop-db_1  mysql -uroot -proot nuxt_shop < nuxt_shop.sql;
-#  docker exec -it testlumen_shop-db_1 bash -c "  mysql -u root -proot;show databases;CREATE DATABASE  nuxt_shop;show databases;mysql -u root -p nuxt_shop < nuxt_shop.sql;exit;exit; "
-#  docker exec -it testlumen_shop-web_1 bash -c "
-#  cd /var/www && \
-#  composer install&& \
+  docker exec -it testlumen_shop-web_1 bash -c "
+  cd /var/www && \
+  composer install&& \
   vendor/bin/phpunit "
 
 after_script:
