@@ -31,9 +31,23 @@ before_script:
 #  - ls -lah
   - cp .env.example .env
   - cp docker-compose.yml.example docker-compose.yml
-  - docker-compose up -d --build
+#  - docker-compose up -d --build
+  - docker-compose up --build
 #  - sudo cp nuxt_shop.sql docker/mysql/nuxt_shop.sql
   - docker-compose ps
+  - docker ps
+  - docker-compose ps
+  - docker ps
+  - docker-compose ps
+  - docker ps
+  - docker-compose ps
+  - docker ps
+  - docker-compose ps
+  - docker ps
+  - docker-compose ps
+  - docker ps
+  - docker-compose ps
+  - docker ps
 script:
 #  docker exec -it testlumen_shop-web_1 bash -c "
 #  cd /var/www && \
