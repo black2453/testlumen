@@ -6,13 +6,13 @@ services:
   - docker
   - mysql
 before_install:
-#  - sudo apt-get -y update
-#  - sudo apt-get -y purge docker.io
-#  - sudo apt-get -y install docker.io
-#  - sudo rm /usr/local/bin/docker-compose
-#  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-#  - chmod +x docker-compose
-#  - sudo mv docker-compose /usr/local/bin
+  - sudo apt-get -y update
+  - sudo apt-get -y purge docker.io
+  - sudo apt-get -y install docker.io
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
   - sudo mysql -e "CREATE DATABASE nuxt_shop;"
 #  - sudo mysql -e 'SHOW DATABASES;'
 #  - mysql -e "SET PASSWORD = PASSWORD('${DB_PASSWORD}');"
@@ -23,7 +23,7 @@ before_install:
 #  - mysql -e "mysql -u root -proot  nuxt_shop < nuxt_shop.sql;"
 before_script:
 #  - ls -lah
-#  - docker kill $(docker ps -q)
+  - docker kill $(docker ps -q)
   - docker rm $(docker ps -qa)
   - docker rmi $(docker images -q)
   - cp .env.example .env
@@ -39,6 +39,7 @@ script:
 
 #  - docker exec `cat testlumen_shop-web_1` sh -c "id -a"
 #  - docker-compose exec shop-web bash
+  - docker exec -it testlumen_shop-web_1 bash
   - cd /var/www &&\
   - composer install &&\
   - vendor/bin/phpunit
