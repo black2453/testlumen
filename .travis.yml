@@ -42,7 +42,7 @@ script:
 #  docker exec -it testlumen_shop-web_1 bash -c "
 #  cd /var/www && \
 #  composer install&& \
-  vendor/bin/phpunit "
+  vendor/bin/phpunit 
 #  - docker exec  testlumen_shop-web_1 bash  " /var/www/vendor/bin/phpunit "
 #  - docker-compose exec shop-web bash
 #  - cd /var/www && composer install && vendor/bin/phpunit
