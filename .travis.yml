@@ -39,10 +39,10 @@ before_script:
 script:
 #  - docker exec `cat testlumen_shop-web_1` sh -c "id -a"
 #  - docker exec -u root `cat container_id` sh -c "mkdir /repository"
-#  docker exec -it testlumen_shop-web_1 bash -c "
-#  cd /var/www && \
-#  composer install&& \
-  vendor/bin/phpunit 
+  docker exec -it testlumen_shop-web_1 bash -c "
+  cd /var/www && \
+  composer install&& \
+  vendor/bin/phpunit "
 #  - docker exec  testlumen_shop-web_1 bash  " /var/www/vendor/bin/phpunit "
 #  - docker-compose exec shop-web bash
 #  - cd /var/www && composer install && vendor/bin/phpunit
