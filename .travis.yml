@@ -5,13 +5,6 @@ dist:  bionic
 services:
   - docker
   - mysql
-env:
-  DOCKER_COMPOSE_VERSION: 1.27.0-rc1
-  DB_HOST: 127.0.0.1
-  DB_PORT: 3306
-#  DB_DATABASE: nuxt_shop
-#  DB_USERNAME: root
-#  DB_PASSWORD: root
 before_install:
 #  - sudo apt-get -y update
 #  - sudo apt-get -y purge docker.io
