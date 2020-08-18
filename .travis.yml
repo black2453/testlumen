@@ -7,8 +7,8 @@ services:
   - mysql
 env:
   DOCKER_COMPOSE_VERSION: 1.27.0-rc1
-  DB_HOST: 127.0.0.1
-  DB_PORT: 3306
+#  DB_HOST: docker.for.mac.localhost
+#  DB_PORT: 3306
 #  DB_DATABASE: nuxt_shop
 #  DB_USERNAME: root
 #  DB_PASSWORD: root
