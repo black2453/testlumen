@@ -33,7 +33,8 @@ before_script:
   - cp docker-compose.yml.example docker-compose.yml
   - docker-compose up -d --build
 #  - sudo cp nuxt_shop.sql docker/mysql/nuxt_shop.sql
-#  - docker-compose ps
+  - service docker restart
+  - docker-compose ps
   - docker container ps
 script:
 #  docker exec -it testlumen_shop-web_1 bash -c "
