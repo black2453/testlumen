@@ -21,24 +21,26 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
   - sudo mysql -e "CREATE DATABASE nuxt_shop;"
-  - sudo mysql -e 'SHOW DATABASES;'
+#  - sudo mysql -e 'SHOW DATABASES;'
 #  - mysql -e "SET PASSWORD = PASSWORD('${DB_PASSWORD}');"
 #  - ls -lah
   - sudo mysql --default-character-set=utf8 nuxt_shop < nuxt_shop.sql
-  - sudo mysql -e 'SHOW DATABASES;'
+#  - sudo mysql -e 'SHOW DATABASES;'
 #  - mysql -e "mysql -u root -proot  nuxt_shop < nuxt_shop.sql;"
 before_script:
-  - ls -lah
+#  - ls -lah
   - cp .env.example .env
   - cp docker-compose.yml.example docker-compose.yml
   - docker-compose up -d --build
 #  - sudo cp nuxt_shop.sql docker/mysql/nuxt_shop.sql
   - docker-compose ps
 script:
-  docker exec -it testlumen_shop-web_1 bash -c "
-  cd /var/www && \
-  composer install&& \
-  vendor/bin/phpunit "
+#  docker exec -it testlumen_shop-web_1 bash -c "
+#  cd /var/www && \
+#  composer install&& \
+#  vendor/bin/phpunit "
+  - docker exec -it testlumen_shop-web_1 bash
+  - cd /var/www && composer install && vendor/bin/phpunit
 
 after_script:
   - docker-compose down
