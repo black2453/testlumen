@@ -23,15 +23,15 @@ before_install:
 #  - mysql -e "mysql -u root -proot  nuxt_shop < nuxt_shop.sql;"
 before_script:
 #  - ls -lah
-  - docker kill $(docker ps -q)
-  - docker rm $(docker ps -qa)
-  - docker rmi $(docker images -q)
+#  - docker kill $(docker ps -q)
+#  - docker rm $(docker ps -qa)
+#  - docker rmi $(docker images -q)
   - cp .env.example .env
   - cp docker-compose.yml.example docker-compose.yml
   - docker-compose up -d --build
 #  - sudo cp nuxt_shop.sql docker/mysql/nuxt_shop.sql
 #  - service docker restart
-#  - docker-compose ps
+  - docker-compose ps
   - docker ps
   - docker container ps
 #  - sudo docker restart testlumen_shop-web_1
