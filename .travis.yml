@@ -37,7 +37,7 @@ before_script:
 #  - service docker restart
 #  - docker-compose ps
 #  - docker container ps
-  - sudo docker restart testlumen_shop-web_1
+#  - sudo docker restart testlumen_shop-web_1
 script:
 
 #  - docker exec `cat testlumen_shop-web_1` sh -c "id -a"
