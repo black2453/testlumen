@@ -29,6 +29,7 @@ before_script:
 #  - sudo cp nuxt_shop.sql docker/mysql/nuxt_shop.sql
 #  - service docker restart
 #  - docker-compose ps
+  - docker ps
   - docker container ps
 #  - sudo docker restart testlumen_shop-web_1
 script:
