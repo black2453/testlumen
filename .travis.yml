@@ -1,7 +1,7 @@
 # 以下為docker環境設置
 # docker + 外部mysql (mysql放docker內暫時無法)
 sudo: required
-dist:  bionic
+
 services:
   - docker
   - mysql
@@ -25,25 +25,21 @@ before_install:
 #  - mysql -e "SET PASSWORD = PASSWORD('${DB_PASSWORD}');"
 #  - ls -lah
   - sudo mysql --default-character-set=utf8 nuxt_shop < nuxt_shop.sql
-#  - sudo  docker restart
 #  - sudo mysql -e 'SHOW DATABASES;'
 #  - mysql -e "mysql -u root -proot  nuxt_shop < nuxt_shop.sql;"
 before_script:
 #  - ls -lah
   - cp .env.example .env
   - cp docker-compose.yml.example docker-compose.yml
-  - su ubuntu
   - docker-compose up -d --build
 #  - sudo cp nuxt_shop.sql docker/mysql/nuxt_shop.sql
-#  - service docker restart
   - docker-compose ps
-  - docker container ps
-#  - sudo docker restart testlumen_shop-web_1
 script:
-#  - docker exec `cat testlumen_shop-web_1` sh -c "id -a"
-#  - docker exec -u root `cat container_id` sh -c "mkdir /repository"
-  docker exec -it testlumen_shop-web_1 bash -c " cd /var/www &&  composer install &&  vendor/bin/phpunit "
-#  - docker exec  testlumen_shop-web_1 bash  " /var/www/vendor/bin/phpunit "
+#  docker exec -it testlumen_shop-web_1 bash -c "
+#  cd /var/www && \
+#  composer install&& \
+#  vendor/bin/phpunit "
+  - docker exec -it testlumen_shop-web_1 bash -c " cd /var/www &&   composer install&&  vendor/bin/phpunit  "
 #  - docker-compose exec shop-web bash
 #  - cd /var/www && composer install && vendor/bin/phpunit
 
