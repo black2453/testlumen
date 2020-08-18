@@ -9,9 +9,9 @@ env:
   DOCKER_COMPOSE_VERSION: 1.27.0-rc1
 #  DB_HOST: docker.for.mac.localhost
 #  DB_PORT: 3306
-  DB_DATABASE: nuxt_shop
-  DB_USERNAME: root
-  DB_PASSWORD: root
+#  DB_DATABASE: nuxt_shop
+#  DB_USERNAME: root
+#  DB_PASSWORD: root
 before_install:
   - sudo apt-get -y update
   - sudo apt-get -y purge docker.io
@@ -20,12 +20,11 @@ before_install:
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
-  - sudo mysql -e use mysql; update user set authentication_string=PASSWORD(${DB_PASSWORD}) where User='{DB_USERNAME}'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;
-  - sudo mysql -u ${DB_USERNAME} -p${DB_PASSWORD} -e "CREATE DATABASE ${DB_DATABASE};"
+  - sudo mysql -e "CREATE DATABASE nuxt_shop;"
 #  - sudo mysql -e 'SHOW DATABASES;'
 #  - mysql -e "SET PASSWORD = PASSWORD('${DB_PASSWORD}');"
 #  - ls -lah
-  - sudo mysql -u ${DB_USERNAME} -p${DB_PASSWORD} --default-character-set=utf8 nuxt_shop < nuxt_shop.sql
+  - sudo mysql --default-character-set=utf8 nuxt_shop < nuxt_shop.sql
 #  - sudo mysql -e 'SHOW DATABASES;'
 #  - mysql -e "mysql -u root -proot  nuxt_shop < nuxt_shop.sql;"
 before_script:
