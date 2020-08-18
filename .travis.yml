@@ -32,6 +32,7 @@ before_script:
 #  - ls -lah
   - cp .env.example .env
   - cp docker-compose.yml.example docker-compose.yml
+  - su ubuntu
   - docker-compose up -d --build
 #  - sudo cp nuxt_shop.sql docker/mysql/nuxt_shop.sql
 #  - service docker restart
