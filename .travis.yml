@@ -33,7 +33,7 @@ before_script:
   - cp docker-compose.yml.example docker-compose.yml
   - docker-compose up -d --build
 #  - sudo cp nuxt_shop.sql docker/mysql/nuxt_shop.sql
-  - service docker restart
+#  - service docker restart
   - docker-compose ps
   - docker container ps
 script:
@@ -41,8 +41,8 @@ script:
 #  cd /var/www && \
 #  composer install&& \
 #  vendor/bin/phpunit "
-  - docker exec -it testlumen_shop-web_1 bash -c " /var/www/vendor/bin/phpunit "
-#  - docker-compose exec shop-web bash
+#  - docker exec -it testlumen_shop-web_1 bash -c " /var/www/vendor/bin/phpunit "
+  - docker-compose exec shop-web bash 
 #  - cd /var/www && composer install && vendor/bin/phpunit
 
 after_script:
