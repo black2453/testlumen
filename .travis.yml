@@ -41,10 +41,10 @@ before_script:
 script:
 
 #  - docker exec `cat testlumen_shop-web_1` sh -c "id -a"
-  - docker-compose exec shop-web bash -c"
+  - docker-compose exec shop-web bash
   - cd /var/www &&\
   - composer install &&\
-  - vendor/bin/phpunit"
+  - vendor/bin/phpunit
 #  - docker exec -u root `cat container_id` sh -c "mkdir /repository"
 #  docker exec -it testlumen_shop-web_1 bash -c "
 #  cd /var/www && \
