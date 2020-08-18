@@ -5,6 +5,13 @@ dist:  bionic
 services:
   - docker
   - mysql
+env:
+  DOCKER_COMPOSE_VERSION: 1.27.0-rc1
+  DB_HOST: 127.0.0.1
+  DB_PORT: 3306
+#  DB_DATABASE: nuxt_shop
+#  DB_USERNAME: root
+#  DB_PASSWORD: root
 before_install:
   - sudo apt-get -y update
   - sudo apt-get -y purge docker.io
@@ -23,31 +30,18 @@ before_install:
 #  - mysql -e "mysql -u root -proot  nuxt_shop < nuxt_shop.sql;"
 before_script:
 #  - ls -lah
-#  - docker kill $(docker ps -q)
-#  - docker rm $(docker ps -qa)
-#  - docker rmi $(docker images -q)
   - cp .env.example .env
   - cp docker-compose.yml.example docker-compose.yml
   - docker-compose up -d --build
 #  - sudo cp nuxt_shop.sql docker/mysql/nuxt_shop.sql
 #  - service docker restart
   - docker-compose ps
-  - docker ps
   - docker container ps
 #  - sudo docker restart testlumen_shop-web_1
 script:
-
 #  - docker exec `cat testlumen_shop-web_1` sh -c "id -a"
-#  - docker-compose exec shop-web bash
-  - docker exec -it testlumen_shop-web_1 bash
-  - cd /var/www &&\
-  - composer install &&\
-  - vendor/bin/phpunit
 #  - docker exec -u root `cat container_id` sh -c "mkdir /repository"
-#  docker exec -it testlumen_shop-web_1 bash -c "
-#  cd /var/www && \
-#  composer install&& \
-#  vendor/bin/phpunit "
+  docker exec -it testlumen_shop-web_1 bash -c " cd /var/www &&  composer install &&  vendor/bin/phpunit "
 #  - docker exec  testlumen_shop-web_1 bash  " /var/www/vendor/bin/phpunit "
 #  - docker-compose exec shop-web bash
 #  - cd /var/www && composer install && vendor/bin/phpunit
