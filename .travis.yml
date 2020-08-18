@@ -35,16 +35,21 @@ before_script:
   - docker-compose up -d --build
 #  - sudo cp nuxt_shop.sql docker/mysql/nuxt_shop.sql
 #  - service docker restart
-  - docker-compose ps
-  - docker container ps
+#  - docker-compose ps
+#  - docker container ps
   - sudo docker restart testlumen_shop-web_1
 script:
+
 #  - docker exec `cat testlumen_shop-web_1` sh -c "id -a"
+  - docker-compose exec shop-web bash -c"
+  - cd /var/www &&\
+  - composer install &&\
+  - vendor/bin/phpunit"
 #  - docker exec -u root `cat container_id` sh -c "mkdir /repository"
-  docker exec -it testlumen_shop-web_1 bash -c "
-  cd /var/www && \
-  composer install&& \
-  vendor/bin/phpunit "
+#  docker exec -it testlumen_shop-web_1 bash -c "
+#  cd /var/www && \
+#  composer install&& \
+#  vendor/bin/phpunit "
 #  - docker exec  testlumen_shop-web_1 bash  " /var/www/vendor/bin/phpunit "
 #  - docker-compose exec shop-web bash
 #  - cd /var/www && composer install && vendor/bin/phpunit
