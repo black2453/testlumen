@@ -1,7 +1,7 @@
 # 以下為docker環境設置
 # docker + 外部mysql (mysql放docker內暫時無法)
 sudo: required
-
+dist:  bionic
 services:
   - docker
   - mysql
@@ -13,12 +13,12 @@ env:
 #  DB_USERNAME: root
 #  DB_PASSWORD: root
 before_install:
-  - sudo apt-get -y update
-  - sudo apt-get -y purge docker.io
-  - sudo apt-get -y install docker.io
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
+#  - sudo apt-get -y update
+#  - sudo apt-get -y purge docker.io
+#  - sudo apt-get -y install docker.io
+#  - sudo rm /usr/local/bin/docker-compose
+#  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+#  - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
   - sudo mysql -e "CREATE DATABASE nuxt_shop;"
 #  - sudo mysql -e 'SHOW DATABASES;'
