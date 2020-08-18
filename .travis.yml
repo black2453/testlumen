@@ -25,7 +25,7 @@ before_install:
 #  - mysql -e "SET PASSWORD = PASSWORD('${DB_PASSWORD}');"
 #  - ls -lah
   - sudo mysql --default-character-set=utf8 nuxt_shop < nuxt_shop.sql
-  - sudo mysql -e SHOW DATABASES
+  - sudo mysql -e 'SHOW DATABASES;'
 #  - mysql -e "mysql -u root -proot  nuxt_shop < nuxt_shop.sql;"
 before_script:
   - ls -lah
