@@ -8,7 +8,6 @@ steps:
     image: composer
     commands:
       - composer install
-
   - name: test
     image: php
     commands:
