@@ -1,7 +1,8 @@
 kind: pipeline
 type: docker
 name: default
-
+clone:
+  depth: 50
 steps:
   - name: install
     image: composer
@@ -9,9 +10,9 @@ steps:
       - composer install
 
   - name: test
-    image: php:7
+    image: php
     commands:
-      - vendor/bin/phpunit --configuration config.xml
+      - vendor/bin/phpunit
     when:
       branch:
         - master
