@@ -4,18 +4,10 @@ name: default
 clone:
   depth: 50
 steps:
-  - name: build
-    build: ./docker/
+  - name: install
+    image: composer
     commands:
-      - cp .env.example .env
-      - cp docker-compose.yml.example docker-compose.yml
-      - docker-compose up -d --build
-      - docker-compose exec shop-db bash
-      - mysql -u root -p
-      - root
-      - SHOW DATABASES;
-      - CREATE DATABASE nuxt_shop;
-#      - composer install
+      - composer install
   - name: test
     image: php
     commands:
@@ -23,7 +15,14 @@ steps:
     when:
       branch:
         - master
-#pipeline:
+services:
+  - name: database
+    image: mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_DATABASE: nuxt_shop
+    command:
+      - mysql --default-character-set=utf8 nuxt_shop < nuxt_shop.sql
 #  build:
 #    image:php:7.4-fpm-alpine3.10
 #    commands:
