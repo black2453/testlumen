@@ -11,12 +11,12 @@ services:
       - ./docker/php.ini:/etc/php/7.4/fpm/conf.d/custom.ini
     depends_on:
       - shop-db
-  shop-db:
-    image: mysql:5.7.30
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-    ports:
-      - "3306:3306"
-    volumes:
-      - ./docker/mysql:/var/lib/mysql
+#  shop-db:
+#    image: mysql:5.7.30
+#    restart: always
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root
+#    ports:
+#      - "3306:3306"
+#    volumes:
+#      - ./docker/mysql:/var/lib/mysql
