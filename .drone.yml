@@ -8,13 +8,15 @@ steps:
     image: composer
     commands:
       - composer install
-  - name: test
-    image: php
-    commands:
+      - ls -al
       - vendor/bin/phpunit
-    when:
-      branch:
-        - master
+#  - name: test
+#    image: php
+#    commands:
+#      - vendor/bin/phpunit
+#    when:
+#      branch:
+#        - master
 services:
   - name: database
     image: mysql
@@ -22,6 +24,7 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
       MYSQL_DATABASE: nuxt_shop
     command:
+      - ls -al
       - mysql --default-character-set=utf8 nuxt_shop < nuxt_shop.sql
 #  build:
 #    image:php:7.4-fpm-alpine3.10
