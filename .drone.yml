@@ -3,6 +3,9 @@ type: docker
 name: default
 clone:
   depth: 50
+platform:
+  os: darwin
+  arch: amd64
 steps:
   - name: install
     image: composer
