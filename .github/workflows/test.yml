@@ -35,8 +35,8 @@ jobs:
       run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
     - name: install vendor
       run: composer install
-    - name: Generate key
-      run: php artisan key:generate
+#    - name: Generate key
+#      run: php artisan key:generate
     - name: Set up MySQL
       uses: mirromutth/mysql-action@v1.1
       with:
