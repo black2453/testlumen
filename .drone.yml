@@ -10,6 +10,7 @@ steps:
       - composer install
       - cp .env.example .env
       - ls -al
+      - ls -al
 #      - php artisan migrate
 #      - mysql --default-character-set=utf8 nuxt_shop < nuxt_shop.sql
   - name: test
