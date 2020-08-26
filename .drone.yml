@@ -11,7 +11,7 @@ steps:
       - cp .env.example .env
       - php artisan migrate
       - ls -al
-      - mysql --default-character-set=utf8 nuxt_shop < nuxt_shop.sql
+#      - mysql --default-character-set=utf8 nuxt_shop < nuxt_shop.sql
   - name: test
     image: php
     commands:
