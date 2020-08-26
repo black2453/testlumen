@@ -45,6 +45,7 @@ jobs:
         mysql database: 'nuxt_shop'
         mysql user: 'root'
         mysql password: 'root'
+      id: mysql
     - names: import database
       run: mysql -u root -proot  nuxt_shop < nuxt_shop.sql
     - name: Execute tests (Unit and Feature tests) via PHPUnit
