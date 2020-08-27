@@ -16,18 +16,21 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    container: ubuntu
     services:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_DATABASE: nuxt_shop
-          MYSQL_USER: root
-          MYSQL_PASSWORD: root
           MYSQL_ROOT_PASSWORD: root
-          ports:
-            - 3306
-          options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-          run: mysql  nuxt_shop < nuxt_shop.sql
+        ports:
+          - 32574:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+      steps:
+        - name: Verify MySQL connection from host
+          run: |
+            sudo apt-get install -y mysql-client
+            mysql --host 127.0.0.1 --port 32574 -uroot -ppassword -e "SHOW DATABASES"
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -59,9 +62,4 @@ jobs:
 #    - name: import database
 #      run: mysql -u root -p nuxt_shop < nuxt_shop.sql
     - name: Execute tests (Unit and Feature tests) via PHPUnit
-      env:
-        MYSQL_DATABASE: nuxt_shop
-          DB_USERNAME: root
-          DB_PASSWORD: root
-          DB_PORT: 3306
       run: vendor/bin/phpunit
