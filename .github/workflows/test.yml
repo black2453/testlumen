@@ -24,6 +24,7 @@ jobs:
         ports:
           - 32574:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+          mysql --host 127.0.0.1 --port 32574 -uroot -ppassword -e "SHOW DATABASES"
 #      steps:
 #        - name: Verify MySQL connection from host
 #          run: |
@@ -45,7 +46,8 @@ jobs:
 #        echo Add other actions to build,
 #        echo test, and deploy your project.
     - name: copy .env file in ci
-      run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
+      run: ls -al &&\
+      php -r "file_exists('.env') || copy('.env.ci', '.env');"
     - name: install vendor
       run: composer install
 #    - name: Generate key
