@@ -47,6 +47,6 @@ jobs:
         mysql password: 'root'
     - name: import database
 #      run: mysql -u root -p root nuxt_shop < nuxt_shop.sql ||
-      run: show databases 
+      run: ls -al
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       run: vendor/bin/phpunit
