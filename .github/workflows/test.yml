@@ -16,7 +16,18 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_DATABASE: nuxt_shop
+          MYSQL_USER: root
+          MYSQL_PASSWORD: root
+          MYSQL_ROOT_PASSWORD: root
+          ports:
+            - 3306
+          options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+          run: mysql  nuxt_shop < nuxt_shop.sql
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -37,16 +48,20 @@ jobs:
       run: composer install
 #    - name: Generate key
 #      run: php artisan key:generate
-    - name: Set up MySQL
-      uses: mirromutth/mysql-action@v1.1
-      with:
-        collation server: 'utf8_general_ci'
-        character set server: 'utf8'
-        mysql database: 'nuxt_shop'
-        mysql user: 'root'
-        mysql password: 'root'
-    - name: import database
+#    - name: Set up MySQL
+#      uses: mirromutth/mysql-action@v1.1
+#      with:
+#        collation server: 'utf8_general_ci'
+#        character set server: 'utf8'
+#        mysql database: 'nuxt_shop'
+#        mysql user: 'root'
+#        mysql password: 'root'
+#    - name: import database
 #      run: mysql -u root -p nuxt_shop < nuxt_shop.sql
-      run: mysql  nuxt_shop < nuxt_shop.sql
     - name: Execute tests (Unit and Feature tests) via PHPUnit
+      env:
+        MYSQL_DATABASE: nuxt_shop
+          DB_USERNAME: root
+          DB_PASSWORD: root
+          DB_PORT: 3306
       run: vendor/bin/phpunit
