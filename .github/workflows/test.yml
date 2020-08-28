@@ -25,11 +25,12 @@ jobs:
           DB_PASSWORD: root
           DB_ROOT_PASSWORD: root
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=5
-     - name: Verify MySQL connection from container
-       run: |
-         apt-get update
-         apt-get install -y mysql-client
-         mysql --host mydb -uroot -proot -e "SHOW DATABASES"
+        steps:
+         - name: Verify MySQL connection from container
+           run: |
+             apt-get update
+             apt-get install -y mysql-client
+             mysql --host mydb -uroot -proot -e "SHOW DATABASES"
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
