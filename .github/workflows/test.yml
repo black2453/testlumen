@@ -76,7 +76,7 @@ jobs:
         DB_PORT: 33306
         DB_USER: root
         DB_PASSWORD: root
-      run: mysql nuxt_shop < nuxt_shop.sql
+      run: mysql -u root -p root nuxt_shop < nuxt_shop.sql
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: mysql
