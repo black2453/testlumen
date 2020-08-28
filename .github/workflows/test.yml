@@ -16,21 +16,20 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    container: ubuntu
     services:
-      mysql:
+      mydb:
         image: mysql:5.7
         env:
-          MYSQL_ROOT_PASSWORD: root
-        ports:
-          - 32574:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-        mysql --host 127.0.0.1 --port 32574 -uroot -ppassword -e "SHOW DATABASES"
-#      steps:
-#        - name: Verify MySQL connection from host
-#          run: |
-#            sudo apt-get install -y mysql-client
-#            mysql --host 127.0.0.1 --port 32574 -uroot -ppassword -e "SHOW DATABASES"
-    container: ubuntu
+
+          DB_PASSWORD: root
+          DB_ROOT_PASSWORD: root
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=5
+     - name: Verify MySQL connection from container
+       run: |
+         apt-get update
+         apt-get install -y mysql-client
+         mysql --host mydb -uroot -proot -e "SHOW DATABASES"
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -45,14 +44,13 @@ jobs:
 #      run: |
 #        echo Add other actions to build,
 #        echo test, and deploy your project.
-    - name: check
-      run: ls -al &&\
     - name: copy .env file in ci
       run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
     - name: install vendor
       run: composer install
 #    - name: Generate key
 #      run: php artisan key:generate
+
 #    - name: Set up MySQL
 #      uses: mirromutth/mysql-action@v1.1
 #      with:
