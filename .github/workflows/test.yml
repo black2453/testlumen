@@ -16,21 +16,26 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    container: ubuntu
     services:
-      mydb:
+      mysql:
         image: mysql:5.7
         env:
+          MYSQL_DATABASE: nuxt_shop
+          MYSQL_USER: user
+          MYSQL_PASSWORD: user
+          MYSQL_ROOT_PASSWORD: user
+        ports:
+          - 3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
-          DB_PASSWORD: root
-          DB_ROOT_PASSWORD: root
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=5
-        steps:
-         - name: Verify MySQL connection from container
-           run: |
-             apt-get update
-             apt-get install -y mysql-client
-             mysql --host mydb -uroot -proot -e "SHOW DATABASES"
+      steps:
+        - uses: actions/checkout@v2
+
+        - name: Verify MySQL connection
+          run: |
+            mysql --version
+            sudo apt-get install -y mysql-client
+            mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uuser -psecret -e "SHOW DATABASES"
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -51,7 +56,6 @@ jobs:
       run: composer install
 #    - name: Generate key
 #      run: php artisan key:generate
-
 #    - name: Set up MySQL
 #      uses: mirromutth/mysql-action@v1.1
 #      with:
