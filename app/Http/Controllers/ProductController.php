@@ -122,28 +122,28 @@ class ProductController extends BaseController
                     $product['reason'] = '';
                     $product['type_id'] = rand(1,16);
 
-                    //  店家icon資訊(標題前面的文字)
-                    if ($key == 'beforeTitleLables') {
-                        foreach ($value as $iconData) {
-                            $shopIcon = [];
-                            foreach ($iconData as $key2 => $value) {
-                                $shopIcon[$key2] = $value;
-                            }
-                            switch ($shopIcon['img']) {
-                                case "https://img.alicdn.com/imgextra/i1/2053469401/O1CN01o1MI292JJhz37UySP_!!2053469401.png":
-                                    $product['before_title_lables'] = '1';
-                                    break;
-                                case "https://img.alicdn.com/imgextra/i3/2053469401/O1CN01D0yc0w2JJhywhfGCZ_!!2053469401.png":
-                                    $product['before_title_lables'] = '2';
-                                    break;
-                                case "https://img.alicdn.com/imgextra/i1/2053469401/O1CN01Vo0nPr2JJhyxyS6Mn_!!2053469401.png":
-                                    $product['before_title_lables'] = '3';
-                                    break;
-                                default:
-                                    $product['before_title_lables'] = '0';
-                            }
-                        }
-                    }
+//                     //  店家icon資訊(標題前面的文字)
+//                     if ($key == 'beforeTitleLables') {
+//                         foreach ($value as $iconData) {
+//                             $shopIcon = [];
+//                             foreach ($iconData as $key2 => $value) {
+//                                 $shopIcon[$key2] = $value;
+//                             }
+//                             switch ($shopIcon['img']) {
+//                                 case "https://img.alicdn.com/imgextra/i1/2053469401/O1CN01o1MI292JJhz37UySP_!!2053469401.png":
+//                                     $product['before_title_lables'] = '1';
+//                                     break;
+//                                 case "https://img.alicdn.com/imgextra/i3/2053469401/O1CN01D0yc0w2JJhywhfGCZ_!!2053469401.png":
+//                                     $product['before_title_lables'] = '2';
+//                                     break;
+//                                 case "https://img.alicdn.com/imgextra/i1/2053469401/O1CN01Vo0nPr2JJhyxyS6Mn_!!2053469401.png":
+//                                     $product['before_title_lables'] = '3';
+//                                     break;
+//                                 default:
+//                                     $product['before_title_lables'] = '0';
+//                             }
+//                         }
+//                     }
                     // 電商術語文字
                     if ($key == 'underPriceLabels') {
                         $underPriceLabelsString = '';
@@ -209,7 +209,7 @@ class ProductController extends BaseController
             foreach ($productData as $product) {
                 $curl = new Curl();
                 $result = $curl->get(
-                    'http://cmsjapi.ffquan.cn/api/goods/get-goods-detail-img?goodsId=' . $product['goods_id']
+
                 );
 
                 $resultArray = (array)$result;
@@ -237,7 +237,7 @@ class ProductController extends BaseController
     {
         $curl = new Curl();
         $result = $curl->get(
-            'http://shengqian.com/index.php?r=class/category&type=1'
+
         );
 
         $result = json_decode($result);
